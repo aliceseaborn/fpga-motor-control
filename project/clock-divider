@@ -1,0 +1,40 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity main is
+port (
+			CLK_50MHZ 		: in  STD_LOGIC;
+			clear			: in std_logic; -- for reseting the flashing light
+			PWM 			: out  STD_LOGIC
+);
+end main;
+
+architecture Behavioral of main is
+
+signal count: std_logic_vector(24 downto 0); -- generate 1 Hz signal (period is 1 sec, duty cycle = 50%)
+signal clk_1Hz: std_logic;
+
+begin
+		--process(mainClock_50MHz, clr)
+		process(CLK_50MHZ, clr)
+		begin
+				if clr = '1' then
+					count <= (others => '0');
+					clk_1Hz <= '0';
+				--elsif rising_edge(mainClock_50MHz) and count < "25,000,000" then
+				elsif rising_edge(CLK_50MHZ) then				
+					if count < "1011111010111100001000000" then
+						count <= count + 1;						
+					else 
+						clk_1Hz <= not clk_1Hz;
+						count <= (others => '0');
+					end if;				
+				end if;
+		end process;
+		
+		PWM <= clk_1Hz;
+		
+end Behavioral;

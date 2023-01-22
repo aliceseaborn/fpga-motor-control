@@ -1,0 +1,12 @@
+//Main clock 50MHz
+NET "CLK_50MHZ" LOC = "C9" | IOSTANDARD = LVCMOS33 ;
+
+//Clear switch
+NET "clear" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP ;
+
+//External Header Pin
+NET "PWM" LOC = "B4" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+
+//Pushbutton Switches
+NET "BTN_EAST" LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN;
+NET "BTN_WEST" LOC = "D18" | IOSTANDARD = LVTTL | PULLDOWN;

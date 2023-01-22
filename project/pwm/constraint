@@ -1,0 +1,10 @@
+//--Main Constraint
+
+//PWM output
+NET "PWM" LOC = "B4" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 6 ;
+
+//Clock source
+NET "CLK_50MHZ" LOC = "C9" | IOSTANDARD = LVCMOS33 ;
+
+//Clear switch
+NET "clear" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP ;

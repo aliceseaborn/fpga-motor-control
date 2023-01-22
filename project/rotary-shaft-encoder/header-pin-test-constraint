@@ -1,0 +1,7 @@
+//Header Pin Test Constraint
+
+//Header out
+NET "active_high" LOC = "B4" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 6 ;
+
+//Clear switch
+NET "clear" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP ;

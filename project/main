@@ -1,0 +1,52 @@
+-- ----------------------------------------
+-- PWM Signal Creator
+-- ----------------------------------------
+
+Library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.STD_LOGIC_UNSIGNED.all;
+
+entity Main
+port (
+		clear 	: in STD_LOGIC;
+		clock	: in STD_LOGIC;
+		duty	: in STD_LOGIC_VECTOR (3 downto 0);
+		period	: in STD_LOGIC_VECTOR (3 downto 0);
+		
+		-- Output
+		PWM		: out STD_LOGIC
+);
+end Main;
+
+architecture Behavioral of Main is
+
+signal count	: STD_LOGIC_VECTOR (3 downto 0);
+
+begin
+
+	count4: 	process (clock, clear) -- 4-bit counter
+	begin
+			if clear = '1' then
+				count = "0000";
+			elsif clock'event and clock = '1' then
+				if count = period -1 then
+					count = "0000";
+				else count = count + 1;
+				end if;
+			end if;
+	end process count4;
+	
+	pwmout: 	process (count)
+	begin
+			if count < duty then
+				PWM <= '1';
+			else
+				PWM <= '0';
+			end if;
+	end pwmout;
+	
+end Behavioral;
+	
+	
+	
+	
